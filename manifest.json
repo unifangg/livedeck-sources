@@ -1,0 +1,2233 @@
+{
+  "schema": "livedeck.manifest/v1",
+  "id": "unifangg-livedeck-sources",
+  "name": "LiveDeck 精选影视源",
+  "author": "unifangg",
+  "homepage": "https://github.com/unifangg/livedeck-sources",
+  "ttlSec": 21600,
+  "mirrors": [
+    "https://gh-proxy.org/{url}",
+    "https://mirror.ghproxy.com/{url}"
+  ],
+  "network": {
+    "userAgent": "okhttp/4.12.0",
+    "followRedirects": true,
+    "timeoutMs": 10000,
+    "retry": {
+      "maxAttempts": 2,
+      "backoffMs": 300
+    }
+  },
+  "adRules": [
+    {
+      "id": "common-hls-ad-strip",
+      "stripDiscontinuity": true,
+      "stripOffHostSegments": false,
+      "segmentUrlRegex": [
+        "/ad/",
+        "guanggao",
+        "_ad_"
+      ],
+      "maxSuspectSegmentSec": 30.0
+    }
+  ],
+  "items": [
+    {
+      "id": "hanjudada-js",
+      "name": "韩剧大大",
+      "driver": "script_js",
+      "capabilities": [
+        "vod"
+      ],
+      "source": {
+        "url": "https://raw.githubusercontent.com/unifangg/livedeck-sources/main/scripts/hanjudada.js",
+        "urls": [
+          "https://cdn.jsdelivr.net/gh/unifangg/livedeck-sources@main/scripts/hanjudada.js"
+        ],
+        "format": "js",
+        "version": "1.0.0"
+      },
+      "meta": {
+        "tags": [
+          "韩剧",
+          "原生态JS"
+        ],
+        "geoHint": "CN",
+        "nsfw": false,
+        "enabledByDefault": true
+      },
+      "rateLimit": {
+        "maxConcurrent": 3,
+        "minIntervalMs": 150
+      },
+      "vod": {
+        "searchable": true,
+        "quickSearch": true,
+        "filterable": false
+      },
+      "playback": {
+        "relay": "auto"
+      }
+    },
+    {
+      "id": "fengye-js",
+      "name": "枫叶影视",
+      "driver": "script_js",
+      "capabilities": [
+        "vod"
+      ],
+      "source": {
+        "url": "https://raw.githubusercontent.com/unifangg/livedeck-sources/main/scripts/fengye.js",
+        "urls": [
+          "https://cdn.jsdelivr.net/gh/unifangg/livedeck-sources@main/scripts/fengye.js"
+        ],
+        "format": "js",
+        "version": "1.0.0"
+      },
+      "meta": {
+        "tags": [
+          "影视",
+          "多清晰度",
+          "原生态JS"
+        ],
+        "geoHint": "CN",
+        "nsfw": false,
+        "enabledByDefault": true
+      },
+      "rateLimit": {
+        "maxConcurrent": 3,
+        "minIntervalMs": 150
+      },
+      "vod": {
+        "searchable": true,
+        "quickSearch": true,
+        "filterable": false
+      },
+      "playback": {
+        "relay": "auto"
+      }
+    },
+    {
+      "id": "dandanzan-js",
+      "name": "蛋蛋赞影院",
+      "driver": "script_js",
+      "capabilities": [
+        "vod"
+      ],
+      "source": {
+        "url": "https://raw.githubusercontent.com/unifangg/livedeck-sources/main/scripts/dandanzan.js",
+        "urls": [
+          "https://cdn.jsdelivr.net/gh/unifangg/livedeck-sources@main/scripts/dandanzan.js"
+        ],
+        "format": "js",
+        "version": "1.0.0"
+      },
+      "meta": {
+        "tags": [
+          "电影",
+          "剧集",
+          "动漫",
+          "原生态JS"
+        ],
+        "geoHint": "CN",
+        "nsfw": false,
+        "enabledByDefault": true
+      },
+      "rateLimit": {
+        "maxConcurrent": 3,
+        "minIntervalMs": 150
+      },
+      "vod": {
+        "searchable": true,
+        "quickSearch": true,
+        "filterable": false
+      },
+      "playback": {
+        "relay": "auto"
+      }
+    },
+    {
+      "id": "pianku-js",
+      "name": "片库影视",
+      "driver": "script_js",
+      "capabilities": [
+        "vod"
+      ],
+      "source": {
+        "url": "https://raw.githubusercontent.com/unifangg/livedeck-sources/main/scripts/pianku.js",
+        "urls": [
+          "https://cdn.jsdelivr.net/gh/unifangg/livedeck-sources@main/scripts/pianku.js"
+        ],
+        "format": "js",
+        "version": "1.0.0"
+      },
+      "meta": {
+        "tags": [
+          "电影",
+          "剧集",
+          "动漫",
+          "原生态JS"
+        ],
+        "geoHint": "CN",
+        "nsfw": false,
+        "enabledByDefault": true
+      },
+      "rateLimit": {
+        "maxConcurrent": 3,
+        "minIntervalMs": 150
+      },
+      "vod": {
+        "searchable": true,
+        "quickSearch": true,
+        "filterable": false
+      },
+      "playback": {
+        "relay": "auto"
+      }
+    },
+    {
+      "id": "hongdou-js",
+      "name": "红豆短剧",
+      "driver": "script_js",
+      "capabilities": [
+        "vod"
+      ],
+      "source": {
+        "url": "https://raw.githubusercontent.com/unifangg/livedeck-sources/main/scripts/hongdou.js",
+        "urls": [
+          "https://cdn.jsdelivr.net/gh/unifangg/livedeck-sources@main/scripts/hongdou.js"
+        ],
+        "format": "js",
+        "version": "1.0.0"
+      },
+      "meta": {
+        "tags": [
+          "短剧",
+          "筛选",
+          "原生态JS"
+        ],
+        "geoHint": "CN",
+        "nsfw": false,
+        "enabledByDefault": true
+      },
+      "rateLimit": {
+        "maxConcurrent": 3,
+        "minIntervalMs": 150
+      },
+      "vod": {
+        "searchable": true,
+        "quickSearch": true,
+        "filterable": true
+      },
+      "playback": {
+        "relay": "auto"
+      }
+    },
+    {
+      "id": "oulevod-js",
+      "name": "欧乐影院",
+      "driver": "script_js",
+      "capabilities": [
+        "vod"
+      ],
+      "source": {
+        "url": "https://raw.githubusercontent.com/unifangg/livedeck-sources/main/scripts/oulevod.js",
+        "urls": [
+          "https://cdn.jsdelivr.net/gh/unifangg/livedeck-sources@main/scripts/oulevod.js"
+        ],
+        "format": "js",
+        "version": "1.0.0"
+      },
+      "meta": {
+        "tags": [
+          "电影",
+          "剧集",
+          "短剧",
+          "综艺",
+          "动漫",
+          "原生态JS"
+        ],
+        "geoHint": "CN",
+        "nsfw": false,
+        "enabledByDefault": true
+      },
+      "rateLimit": {
+        "maxConcurrent": 3,
+        "minIntervalMs": 150
+      },
+      "vod": {
+        "searchable": true,
+        "quickSearch": true,
+        "filterable": false
+      },
+      "playback": {
+        "relay": "auto"
+      }
+    },
+    {
+      "id": "duboku-js",
+      "name": "独播库",
+      "driver": "script_js",
+      "capabilities": [
+        "vod"
+      ],
+      "source": {
+        "url": "https://raw.githubusercontent.com/unifangg/livedeck-sources/main/scripts/duboku.js",
+        "urls": [
+          "https://cdn.jsdelivr.net/gh/unifangg/livedeck-sources@main/scripts/duboku.js"
+        ],
+        "format": "js",
+        "version": "1.0.0"
+      },
+      "meta": {
+        "tags": [
+          "剧集",
+          "电影",
+          "综艺",
+          "动漫",
+          "原生态JS"
+        ],
+        "geoHint": "CN",
+        "nsfw": false,
+        "enabledByDefault": true
+      },
+      "rateLimit": {
+        "maxConcurrent": 3,
+        "minIntervalMs": 150
+      },
+      "vod": {
+        "searchable": true,
+        "quickSearch": true,
+        "filterable": false
+      },
+      "playback": {
+        "relay": "auto"
+      }
+    },
+    {
+      "id": "ncat-js",
+      "name": "网飞猫",
+      "driver": "script_js",
+      "capabilities": [
+        "vod"
+      ],
+      "source": {
+        "url": "https://raw.githubusercontent.com/unifangg/livedeck-sources/main/scripts/ncat.js",
+        "urls": [
+          "https://cdn.jsdelivr.net/gh/unifangg/livedeck-sources@main/scripts/ncat.js"
+        ],
+        "format": "js",
+        "version": "1.0.0"
+      },
+      "meta": {
+        "tags": [
+          "电影",
+          "剧集",
+          "动漫",
+          "综艺",
+          "短剧",
+          "原生态JS"
+        ],
+        "geoHint": "CN",
+        "nsfw": false,
+        "enabledByDefault": true
+      },
+      "rateLimit": {
+        "maxConcurrent": 3,
+        "minIntervalMs": 150
+      },
+      "vod": {
+        "searchable": true,
+        "quickSearch": true,
+        "filterable": false
+      },
+      "playback": {
+        "relay": "auto"
+      }
+    },
+    {
+      "id": "keke-js",
+      "name": "可可影视",
+      "driver": "script_js",
+      "capabilities": [
+        "vod"
+      ],
+      "source": {
+        "url": "https://raw.githubusercontent.com/unifangg/livedeck-sources/main/scripts/keke.js",
+        "urls": [
+          "https://cdn.jsdelivr.net/gh/unifangg/livedeck-sources@main/scripts/keke.js"
+        ],
+        "format": "js",
+        "version": "1.0.0"
+      },
+      "meta": {
+        "tags": [
+          "电影",
+          "剧集",
+          "动漫",
+          "综艺",
+          "短剧",
+          "原生态JS"
+        ],
+        "geoHint": "CN",
+        "nsfw": false,
+        "enabledByDefault": true
+      },
+      "rateLimit": {
+        "maxConcurrent": 3,
+        "minIntervalMs": 150
+      },
+      "vod": {
+        "searchable": true,
+        "quickSearch": true,
+        "filterable": false
+      },
+      "playback": {
+        "relay": "auto"
+      }
+    },
+    {
+      "id": "feiliu-js",
+      "name": "飞流视频",
+      "driver": "script_js",
+      "capabilities": [
+        "vod"
+      ],
+      "source": {
+        "url": "https://raw.githubusercontent.com/unifangg/livedeck-sources/main/scripts/feiliu.js",
+        "urls": [
+          "https://cdn.jsdelivr.net/gh/unifangg/livedeck-sources@main/scripts/feiliu.js"
+        ],
+        "format": "js",
+        "version": "1.0.0"
+      },
+      "meta": {
+        "tags": [
+          "电影",
+          "剧集",
+          "动漫",
+          "筛选",
+          "原生态JS"
+        ],
+        "geoHint": "CN",
+        "nsfw": false,
+        "enabledByDefault": true
+      },
+      "rateLimit": {
+        "maxConcurrent": 3,
+        "minIntervalMs": 150
+      },
+      "vod": {
+        "searchable": true,
+        "quickSearch": true,
+        "filterable": true
+      },
+      "playback": {
+        "relay": "auto"
+      }
+    },
+    {
+      "id": "weishi-js",
+      "name": "威视TV",
+      "driver": "script_js",
+      "capabilities": [
+        "vod"
+      ],
+      "source": {
+        "url": "https://raw.githubusercontent.com/unifangg/livedeck-sources/main/scripts/weishi.js",
+        "urls": [
+          "https://cdn.jsdelivr.net/gh/unifangg/livedeck-sources@main/scripts/weishi.js"
+        ],
+        "format": "js",
+        "version": "1.0.0"
+      },
+      "meta": {
+        "tags": [
+          "电影",
+          "剧集",
+          "综艺",
+          "动漫",
+          "原生态JS"
+        ],
+        "geoHint": "CN",
+        "nsfw": false,
+        "enabledByDefault": true
+      },
+      "rateLimit": {
+        "maxConcurrent": 3,
+        "minIntervalMs": 150
+      },
+      "vod": {
+        "searchable": true,
+        "quickSearch": true,
+        "filterable": false
+      },
+      "playback": {
+        "relay": "auto"
+      }
+    },
+    {
+      "id": "damahou-js",
+      "name": "大马猴影视",
+      "driver": "script_js",
+      "capabilities": [
+        "vod"
+      ],
+      "source": {
+        "url": "https://raw.githubusercontent.com/unifangg/livedeck-sources/main/scripts/damahou.js",
+        "urls": [
+          "https://cdn.jsdelivr.net/gh/unifangg/livedeck-sources@main/scripts/damahou.js"
+        ],
+        "format": "js",
+        "version": "1.0.0"
+      },
+      "meta": {
+        "tags": [
+          "电影",
+          "剧集",
+          "动漫",
+          "综艺",
+          "原生态JS"
+        ],
+        "geoHint": "CN",
+        "nsfw": false,
+        "enabledByDefault": true
+      },
+      "rateLimit": {
+        "maxConcurrent": 3,
+        "minIntervalMs": 150
+      },
+      "vod": {
+        "searchable": true,
+        "quickSearch": true,
+        "filterable": false
+      },
+      "playback": {
+        "relay": "auto"
+      }
+    },
+    {
+      "id": "naifei-js",
+      "name": "奈非工厂",
+      "driver": "script_js",
+      "capabilities": [
+        "vod"
+      ],
+      "source": {
+        "url": "https://raw.githubusercontent.com/unifangg/livedeck-sources/main/scripts/naifei.js",
+        "urls": [
+          "https://cdn.jsdelivr.net/gh/unifangg/livedeck-sources@main/scripts/naifei.js"
+        ],
+        "format": "js",
+        "version": "1.0.0"
+      },
+      "meta": {
+        "tags": [
+          "电影",
+          "剧集",
+          "动漫",
+          "综艺",
+          "纪录片",
+          "原生态JS"
+        ],
+        "geoHint": "CN",
+        "nsfw": false,
+        "enabledByDefault": true
+      },
+      "rateLimit": {
+        "maxConcurrent": 3,
+        "minIntervalMs": 150
+      },
+      "vod": {
+        "searchable": true,
+        "quickSearch": true,
+        "filterable": false
+      },
+      "playback": {
+        "relay": "auto"
+      }
+    },
+    {
+      "id": "yy6080-js",
+      "name": "6080影视",
+      "driver": "script_js",
+      "capabilities": [
+        "vod"
+      ],
+      "source": {
+        "url": "https://raw.githubusercontent.com/unifangg/livedeck-sources/main/scripts/yy6080.js",
+        "urls": [
+          "https://cdn.jsdelivr.net/gh/unifangg/livedeck-sources@main/scripts/yy6080.js"
+        ],
+        "format": "js",
+        "version": "1.0.0"
+      },
+      "meta": {
+        "tags": [
+          "电影",
+          "剧集",
+          "动漫",
+          "综艺",
+          "筛选",
+          "原生态JS"
+        ],
+        "geoHint": "CN",
+        "nsfw": false,
+        "enabledByDefault": true
+      },
+      "rateLimit": {
+        "maxConcurrent": 3,
+        "minIntervalMs": 150
+      },
+      "vod": {
+        "searchable": true,
+        "quickSearch": true,
+        "filterable": true
+      },
+      "playback": {
+        "relay": "auto"
+      }
+    },
+    {
+      "id": "daishu-js",
+      "name": "袋鼠影视",
+      "driver": "script_js",
+      "capabilities": [
+        "vod"
+      ],
+      "source": {
+        "url": "https://raw.githubusercontent.com/unifangg/livedeck-sources/main/scripts/daishu.js",
+        "urls": [
+          "https://cdn.jsdelivr.net/gh/unifangg/livedeck-sources@main/scripts/daishu.js"
+        ],
+        "format": "js",
+        "version": "1.0.0"
+      },
+      "meta": {
+        "tags": [
+          "电影",
+          "剧集",
+          "综艺",
+          "动漫",
+          "短剧",
+          "原生态JS"
+        ],
+        "geoHint": "CN",
+        "nsfw": false,
+        "enabledByDefault": true
+      },
+      "rateLimit": {
+        "maxConcurrent": 3,
+        "minIntervalMs": 150
+      },
+      "vod": {
+        "searchable": true,
+        "quickSearch": true,
+        "filterable": false
+      },
+      "playback": {
+        "relay": "auto"
+      }
+    },
+    {
+      "id": "dieka-js",
+      "name": "蝶卡影视",
+      "driver": "script_js",
+      "capabilities": [
+        "vod"
+      ],
+      "source": {
+        "url": "https://raw.githubusercontent.com/unifangg/livedeck-sources/main/scripts/dieka.js",
+        "urls": [
+          "https://cdn.jsdelivr.net/gh/unifangg/livedeck-sources@main/scripts/dieka.js"
+        ],
+        "format": "js",
+        "version": "1.0.0"
+      },
+      "meta": {
+        "tags": [
+          "电影",
+          "剧集",
+          "综艺",
+          "动漫",
+          "短剧",
+          "体育",
+          "筛选",
+          "原生态JS"
+        ],
+        "geoHint": "CN",
+        "nsfw": false,
+        "enabledByDefault": true
+      },
+      "rateLimit": {
+        "maxConcurrent": 3,
+        "minIntervalMs": 150
+      },
+      "vod": {
+        "searchable": true,
+        "quickSearch": true,
+        "filterable": true
+      },
+      "playback": {
+        "relay": "auto"
+      }
+    },
+    {
+      "id": "baihua-js",
+      "name": "百花影院",
+      "driver": "script_js",
+      "capabilities": [
+        "vod"
+      ],
+      "source": {
+        "url": "https://raw.githubusercontent.com/unifangg/livedeck-sources/main/scripts/baihua.js",
+        "urls": [
+          "https://cdn.jsdelivr.net/gh/unifangg/livedeck-sources@main/scripts/baihua.js"
+        ],
+        "format": "js",
+        "version": "1.0.0"
+      },
+      "meta": {
+        "tags": [
+          "电影",
+          "剧集",
+          "综艺",
+          "动漫",
+          "筛选",
+          "原生态JS"
+        ],
+        "geoHint": "CN",
+        "nsfw": false,
+        "enabledByDefault": true
+      },
+      "rateLimit": {
+        "maxConcurrent": 3,
+        "minIntervalMs": 150
+      },
+      "vod": {
+        "searchable": true,
+        "quickSearch": true,
+        "filterable": true
+      },
+      "playback": {
+        "relay": "auto"
+      }
+    },
+    {
+      "id": "yiqi-js",
+      "name": "一起影视",
+      "driver": "script_js",
+      "capabilities": [
+        "vod"
+      ],
+      "source": {
+        "url": "https://raw.githubusercontent.com/unifangg/livedeck-sources/main/scripts/yiqi.js",
+        "urls": [
+          "https://cdn.jsdelivr.net/gh/unifangg/livedeck-sources@main/scripts/yiqi.js"
+        ],
+        "format": "js",
+        "version": "1.0.0"
+      },
+      "meta": {
+        "tags": [
+          "电影",
+          "剧集",
+          "综艺",
+          "动漫",
+          "筛选",
+          "原生态JS"
+        ],
+        "geoHint": "CN",
+        "nsfw": false,
+        "enabledByDefault": true
+      },
+      "rateLimit": {
+        "maxConcurrent": 3,
+        "minIntervalMs": 150
+      },
+      "vod": {
+        "searchable": true,
+        "quickSearch": true,
+        "filterable": true
+      },
+      "playback": {
+        "relay": "auto"
+      }
+    },
+    {
+      "id": "zip0-js",
+      "name": "ZIP0影视",
+      "driver": "script_js",
+      "capabilities": [
+        "vod"
+      ],
+      "source": {
+        "url": "https://raw.githubusercontent.com/unifangg/livedeck-sources/main/scripts/zip0.js",
+        "urls": [
+          "https://cdn.jsdelivr.net/gh/unifangg/livedeck-sources@main/scripts/zip0.js"
+        ],
+        "format": "js",
+        "version": "1.0.0"
+      },
+      "meta": {
+        "tags": [
+          "电影",
+          "剧集",
+          "综艺",
+          "动漫",
+          "短剧",
+          "纪录片",
+          "原生态JS"
+        ],
+        "geoHint": "CN",
+        "nsfw": false,
+        "enabledByDefault": true
+      },
+      "rateLimit": {
+        "maxConcurrent": 3,
+        "minIntervalMs": 150
+      },
+      "vod": {
+        "searchable": true,
+        "quickSearch": true,
+        "filterable": false
+      },
+      "playback": {
+        "relay": "auto"
+      }
+    },
+    {
+      "id": "bajie-js",
+      "name": "八戒影视",
+      "driver": "script_js",
+      "capabilities": [
+        "vod"
+      ],
+      "source": {
+        "url": "https://raw.githubusercontent.com/unifangg/livedeck-sources/main/scripts/bajie.js",
+        "urls": [
+          "https://cdn.jsdelivr.net/gh/unifangg/livedeck-sources@main/scripts/bajie.js"
+        ],
+        "format": "js",
+        "version": "1.0.0"
+      },
+      "meta": {
+        "tags": [
+          "电影",
+          "剧集",
+          "综艺",
+          "动漫",
+          "原生态JS"
+        ],
+        "geoHint": "CN",
+        "nsfw": false,
+        "enabledByDefault": true
+      },
+      "rateLimit": {
+        "maxConcurrent": 3,
+        "minIntervalMs": 150
+      },
+      "vod": {
+        "searchable": true,
+        "quickSearch": true,
+        "filterable": false
+      },
+      "playback": {
+        "relay": "auto"
+      }
+    },
+    {
+      "id": "xinjianpian-js",
+      "name": "新荐片",
+      "driver": "script_js",
+      "capabilities": [
+        "vod"
+      ],
+      "source": {
+        "url": "https://raw.githubusercontent.com/unifangg/livedeck-sources/main/scripts/xinjianpian.js",
+        "urls": [
+          "https://cdn.jsdelivr.net/gh/unifangg/livedeck-sources@main/scripts/xinjianpian.js"
+        ],
+        "format": "js",
+        "version": "1.0.0"
+      },
+      "meta": {
+        "tags": [
+          "电影",
+          "剧集",
+          "动漫",
+          "综艺",
+          "筛选",
+          "原生态JS"
+        ],
+        "geoHint": "CN",
+        "nsfw": false,
+        "enabledByDefault": true
+      },
+      "rateLimit": {
+        "maxConcurrent": 3,
+        "minIntervalMs": 150
+      },
+      "vod": {
+        "searchable": true,
+        "quickSearch": true,
+        "filterable": true
+      },
+      "playback": {
+        "relay": "auto"
+      }
+    },
+    {
+      "id": "ppnix-js",
+      "name": "PPnix影视",
+      "driver": "script_js",
+      "capabilities": [
+        "vod"
+      ],
+      "source": {
+        "url": "https://raw.githubusercontent.com/unifangg/livedeck-sources/main/scripts/ppnix.js",
+        "urls": [
+          "https://cdn.jsdelivr.net/gh/unifangg/livedeck-sources@main/scripts/ppnix.js"
+        ],
+        "format": "js",
+        "version": "1.0.0"
+      },
+      "meta": {
+        "tags": [
+          "电影",
+          "剧集",
+          "动漫",
+          "原生态JS"
+        ],
+        "geoHint": "CN",
+        "nsfw": false,
+        "enabledByDefault": true
+      },
+      "rateLimit": {
+        "maxConcurrent": 3,
+        "minIntervalMs": 150
+      },
+      "vod": {
+        "searchable": true,
+        "quickSearch": true,
+        "filterable": false
+      },
+      "playback": {
+        "relay": "auto"
+      }
+    },
+    {
+      "id": "ecohub-js",
+      "name": "EcoHub影视",
+      "driver": "script_js",
+      "capabilities": [
+        "vod"
+      ],
+      "source": {
+        "url": "https://raw.githubusercontent.com/unifangg/livedeck-sources/main/scripts/ecohub.js",
+        "urls": [
+          "https://cdn.jsdelivr.net/gh/unifangg/livedeck-sources@main/scripts/ecohub.js"
+        ],
+        "format": "js",
+        "version": "1.0.0"
+      },
+      "meta": {
+        "tags": [
+          "电影",
+          "剧集",
+          "动漫",
+          "短剧",
+          "筛选",
+          "原生态JS"
+        ],
+        "geoHint": "CN",
+        "nsfw": false,
+        "enabledByDefault": true
+      },
+      "rateLimit": {
+        "maxConcurrent": 3,
+        "minIntervalMs": 150
+      },
+      "vod": {
+        "searchable": true,
+        "quickSearch": true,
+        "filterable": true
+      },
+      "playback": {
+        "relay": "auto"
+      }
+    },
+    {
+      "id": "kaiduan-js",
+      "name": "开端影视",
+      "driver": "script_js",
+      "capabilities": [
+        "vod"
+      ],
+      "source": {
+        "url": "https://raw.githubusercontent.com/unifangg/livedeck-sources/main/scripts/kaiduan.js",
+        "urls": [
+          "https://cdn.jsdelivr.net/gh/unifangg/livedeck-sources@main/scripts/kaiduan.js"
+        ],
+        "format": "js",
+        "version": "1.0.0"
+      },
+      "meta": {
+        "tags": [
+          "电影",
+          "剧集",
+          "动漫",
+          "短剧",
+          "原生态JS"
+        ],
+        "geoHint": "CN",
+        "nsfw": false,
+        "enabledByDefault": true
+      },
+      "rateLimit": {
+        "maxConcurrent": 3,
+        "minIntervalMs": 150
+      },
+      "vod": {
+        "searchable": true,
+        "quickSearch": true,
+        "filterable": false
+      },
+      "playback": {
+        "relay": "auto"
+      }
+    },
+    {
+      "id": "rebo-js",
+      "name": "热播影视",
+      "driver": "script_js",
+      "capabilities": [
+        "vod"
+      ],
+      "source": {
+        "url": "https://raw.githubusercontent.com/unifangg/livedeck-sources/main/scripts/rebo.js",
+        "urls": [
+          "https://cdn.jsdelivr.net/gh/unifangg/livedeck-sources@main/scripts/rebo.js"
+        ],
+        "format": "js",
+        "version": "1.0.0"
+      },
+      "meta": {
+        "tags": [
+          "电影",
+          "剧集",
+          "动漫",
+          "综艺",
+          "筛选",
+          "原生态JS"
+        ],
+        "geoHint": "CN",
+        "nsfw": false,
+        "enabledByDefault": true
+      },
+      "rateLimit": {
+        "maxConcurrent": 3,
+        "minIntervalMs": 150
+      },
+      "vod": {
+        "searchable": true,
+        "quickSearch": true,
+        "filterable": true
+      },
+      "playback": {
+        "relay": "auto"
+      }
+    },
+    {
+      "id": "guazi-js",
+      "name": "瓜子影视",
+      "driver": "script_js",
+      "capabilities": [
+        "vod"
+      ],
+      "source": {
+        "url": "https://raw.githubusercontent.com/unifangg/livedeck-sources/main/scripts/guazi.js",
+        "urls": [
+          "https://cdn.jsdelivr.net/gh/unifangg/livedeck-sources@main/scripts/guazi.js"
+        ],
+        "format": "js",
+        "version": "1.0.0"
+      },
+      "meta": {
+        "tags": [
+          "电影",
+          "剧集",
+          "动漫",
+          "综艺",
+          "短剧",
+          "筛选",
+          "原生态JS"
+        ],
+        "geoHint": "CN",
+        "nsfw": false,
+        "enabledByDefault": true
+      },
+      "rateLimit": {
+        "maxConcurrent": 3,
+        "minIntervalMs": 150
+      },
+      "vod": {
+        "searchable": true,
+        "quickSearch": true,
+        "filterable": true
+      },
+      "playback": {
+        "relay": "auto"
+      }
+    },
+    {
+      "id": "uvod-js",
+      "name": "UVod影视",
+      "driver": "script_js",
+      "capabilities": [
+        "vod"
+      ],
+      "source": {
+        "url": "https://raw.githubusercontent.com/unifangg/livedeck-sources/main/scripts/uvod.js",
+        "urls": [
+          "https://cdn.jsdelivr.net/gh/unifangg/livedeck-sources@main/scripts/uvod.js"
+        ],
+        "format": "js",
+        "version": "1.0.0"
+      },
+      "meta": {
+        "tags": [
+          "电影",
+          "剧集",
+          "动漫",
+          "综艺",
+          "多清晰度",
+          "筛选",
+          "原生态JS"
+        ],
+        "geoHint": "CN",
+        "nsfw": false,
+        "enabledByDefault": true
+      },
+      "rateLimit": {
+        "maxConcurrent": 3,
+        "minIntervalMs": 150
+      },
+      "vod": {
+        "searchable": true,
+        "quickSearch": true,
+        "filterable": true
+      },
+      "playback": {
+        "relay": "auto"
+      }
+    },
+    {
+      "id": "ikanbot-js",
+      "name": "爱看机器人",
+      "driver": "script_js",
+      "capabilities": [
+        "vod"
+      ],
+      "source": {
+        "url": "https://raw.githubusercontent.com/unifangg/livedeck-sources/main/scripts/ikanbot.js",
+        "urls": [
+          "https://cdn.jsdelivr.net/gh/unifangg/livedeck-sources@main/scripts/ikanbot.js"
+        ],
+        "format": "js",
+        "version": "1.0.0"
+      },
+      "meta": {
+        "tags": [
+          "电影",
+          "剧集",
+          "筛选",
+          "原生态JS"
+        ],
+        "geoHint": "CN",
+        "nsfw": false,
+        "enabledByDefault": true
+      },
+      "rateLimit": {
+        "maxConcurrent": 3,
+        "minIntervalMs": 150
+      },
+      "vod": {
+        "searchable": true,
+        "quickSearch": true,
+        "filterable": true
+      },
+      "playback": {
+        "relay": "auto"
+      }
+    },
+    {
+      "id": "fantuan-js",
+      "name": "饭团影视",
+      "driver": "script_js",
+      "capabilities": [
+        "vod"
+      ],
+      "source": {
+        "url": "https://raw.githubusercontent.com/unifangg/livedeck-sources/main/scripts/fantuan.js",
+        "urls": [
+          "https://cdn.jsdelivr.net/gh/unifangg/livedeck-sources@main/scripts/fantuan.js"
+        ],
+        "format": "js",
+        "version": "1.0.0"
+      },
+      "meta": {
+        "tags": [
+          "电影",
+          "剧集",
+          "动漫",
+          "综艺",
+          "筛选",
+          "原生态JS"
+        ],
+        "geoHint": "CN",
+        "nsfw": false,
+        "enabledByDefault": true
+      },
+      "rateLimit": {
+        "maxConcurrent": 3,
+        "minIntervalMs": 150
+      },
+      "vod": {
+        "searchable": true,
+        "quickSearch": true,
+        "filterable": true
+      },
+      "playback": {
+        "relay": "auto"
+      }
+    },
+    {
+      "id": "moovie-js",
+      "name": "影牛影视",
+      "driver": "script_js",
+      "capabilities": [
+        "vod"
+      ],
+      "source": {
+        "url": "https://raw.githubusercontent.com/unifangg/livedeck-sources/main/scripts/moovie.js",
+        "urls": [
+          "https://cdn.jsdelivr.net/gh/unifangg/livedeck-sources@main/scripts/moovie.js"
+        ],
+        "format": "js",
+        "version": "1.0.0"
+      },
+      "meta": {
+        "tags": [
+          "电影",
+          "剧集",
+          "综艺",
+          "动漫",
+          "原生态JS"
+        ],
+        "geoHint": "CN",
+        "nsfw": false,
+        "enabledByDefault": true
+      },
+      "rateLimit": {
+        "maxConcurrent": 3,
+        "minIntervalMs": 150
+      },
+      "vod": {
+        "searchable": true,
+        "quickSearch": true,
+        "filterable": false
+      },
+      "playback": {
+        "relay": "auto"
+      }
+    },
+    {
+      "id": "kanxi-js",
+      "name": "看戏影视",
+      "driver": "script_js",
+      "capabilities": [
+        "vod"
+      ],
+      "source": {
+        "url": "https://raw.githubusercontent.com/unifangg/livedeck-sources/main/scripts/kanxi.js",
+        "urls": [
+          "https://cdn.jsdelivr.net/gh/unifangg/livedeck-sources@main/scripts/kanxi.js"
+        ],
+        "format": "js",
+        "version": "1.0.0"
+      },
+      "meta": {
+        "tags": [
+          "电影",
+          "剧集",
+          "综艺",
+          "动漫",
+          "筛选",
+          "原生态JS"
+        ],
+        "geoHint": "CN",
+        "nsfw": false,
+        "enabledByDefault": true
+      },
+      "rateLimit": {
+        "maxConcurrent": 3,
+        "minIntervalMs": 150
+      },
+      "vod": {
+        "searchable": true,
+        "quickSearch": true,
+        "filterable": true
+      },
+      "playback": {
+        "relay": "auto"
+      }
+    },
+    {
+      "id": "tv123-js",
+      "name": "123TV",
+      "driver": "script_js",
+      "capabilities": [
+        "vod"
+      ],
+      "source": {
+        "url": "https://raw.githubusercontent.com/unifangg/livedeck-sources/main/scripts/tv123.js",
+        "urls": [
+          "https://cdn.jsdelivr.net/gh/unifangg/livedeck-sources@main/scripts/tv123.js"
+        ],
+        "format": "js",
+        "version": "1.0.0"
+      },
+      "meta": {
+        "tags": [
+          "电影",
+          "剧集",
+          "综艺",
+          "动漫",
+          "筛选",
+          "原生态JS"
+        ],
+        "geoHint": "CN",
+        "nsfw": false,
+        "enabledByDefault": true
+      },
+      "rateLimit": {
+        "maxConcurrent": 3,
+        "minIntervalMs": 150
+      },
+      "vod": {
+        "searchable": true,
+        "quickSearch": true,
+        "filterable": true
+      },
+      "playback": {
+        "relay": "auto"
+      }
+    },
+    {
+      "id": "feikuai-js",
+      "name": "飞快TV",
+      "driver": "script_js",
+      "capabilities": [
+        "vod"
+      ],
+      "source": {
+        "url": "https://raw.githubusercontent.com/unifangg/livedeck-sources/main/scripts/feikuai.js",
+        "urls": [
+          "https://cdn.jsdelivr.net/gh/unifangg/livedeck-sources@main/scripts/feikuai.js"
+        ],
+        "format": "js",
+        "version": "1.0.0"
+      },
+      "meta": {
+        "tags": [
+          "电影",
+          "剧集",
+          "综艺",
+          "动漫",
+          "原生态JS"
+        ],
+        "geoHint": "CN",
+        "nsfw": false,
+        "enabledByDefault": true
+      },
+      "rateLimit": {
+        "maxConcurrent": 3,
+        "minIntervalMs": 150
+      },
+      "vod": {
+        "searchable": true,
+        "quickSearch": true,
+        "filterable": false
+      },
+      "playback": {
+        "relay": "auto"
+      }
+    },
+    {
+      "id": "kan247-js",
+      "name": "247看",
+      "driver": "script_js",
+      "capabilities": [
+        "vod"
+      ],
+      "source": {
+        "url": "https://raw.githubusercontent.com/unifangg/livedeck-sources/main/scripts/kan247.js",
+        "urls": [
+          "https://cdn.jsdelivr.net/gh/unifangg/livedeck-sources@main/scripts/kan247.js"
+        ],
+        "format": "js",
+        "version": "1.0.0"
+      },
+      "meta": {
+        "tags": [
+          "电影",
+          "剧集",
+          "综艺",
+          "动漫",
+          "短剧",
+          "纪录片",
+          "原生态JS"
+        ],
+        "geoHint": "CN",
+        "nsfw": false,
+        "enabledByDefault": true
+      },
+      "rateLimit": {
+        "maxConcurrent": 3,
+        "minIntervalMs": 150
+      },
+      "vod": {
+        "searchable": true,
+        "quickSearch": true,
+        "filterable": false
+      },
+      "playback": {
+        "relay": "auto"
+      }
+    },
+    {
+      "id": "maque-js",
+      "name": "麻雀视频",
+      "driver": "script_js",
+      "capabilities": [
+        "vod"
+      ],
+      "source": {
+        "url": "https://raw.githubusercontent.com/unifangg/livedeck-sources/main/scripts/maque.js",
+        "urls": [
+          "https://cdn.jsdelivr.net/gh/unifangg/livedeck-sources@main/scripts/maque.js"
+        ],
+        "format": "js",
+        "version": "1.0.0"
+      },
+      "meta": {
+        "tags": [
+          "电影",
+          "剧集",
+          "综艺",
+          "动漫",
+          "原生态JS"
+        ],
+        "geoHint": "CN",
+        "nsfw": false,
+        "enabledByDefault": true
+      },
+      "rateLimit": {
+        "maxConcurrent": 3,
+        "minIntervalMs": 150
+      },
+      "vod": {
+        "searchable": true,
+        "quickSearch": true,
+        "filterable": false
+      },
+      "playback": {
+        "relay": "auto"
+      }
+    },
+    {
+      "id": "hanjuwang-js",
+      "name": "韩剧网",
+      "driver": "script_js",
+      "capabilities": [
+        "vod"
+      ],
+      "source": {
+        "url": "https://raw.githubusercontent.com/unifangg/livedeck-sources/main/scripts/hanjuwang.js",
+        "urls": [
+          "https://cdn.jsdelivr.net/gh/unifangg/livedeck-sources@main/scripts/hanjuwang.js"
+        ],
+        "format": "js",
+        "version": "1.0.0"
+      },
+      "meta": {
+        "tags": [
+          "韩剧",
+          "电影",
+          "剧集",
+          "原生态JS"
+        ],
+        "geoHint": "CN",
+        "nsfw": false,
+        "enabledByDefault": true
+      },
+      "rateLimit": {
+        "maxConcurrent": 3,
+        "minIntervalMs": 150
+      },
+      "vod": {
+        "searchable": true,
+        "quickSearch": true,
+        "filterable": false
+      },
+      "playback": {
+        "relay": "auto"
+      }
+    },
+    {
+      "id": "hanjubashi-js",
+      "name": "韩剧巴士",
+      "driver": "script_js",
+      "capabilities": [
+        "vod"
+      ],
+      "source": {
+        "url": "https://raw.githubusercontent.com/unifangg/livedeck-sources/main/scripts/hanjubashi.js",
+        "urls": [
+          "https://cdn.jsdelivr.net/gh/unifangg/livedeck-sources@main/scripts/hanjubashi.js"
+        ],
+        "format": "js",
+        "version": "1.0.0"
+      },
+      "meta": {
+        "tags": [
+          "韩剧",
+          "电影",
+          "综艺",
+          "动漫",
+          "短剧",
+          "筛选",
+          "原生态JS"
+        ],
+        "geoHint": "CN",
+        "nsfw": false,
+        "enabledByDefault": true
+      },
+      "rateLimit": {
+        "maxConcurrent": 3,
+        "minIntervalMs": 150
+      },
+      "vod": {
+        "searchable": true,
+        "quickSearch": true,
+        "filterable": true
+      },
+      "playback": {
+        "relay": "auto"
+      }
+    },
+    {
+      "id": "xinhanju-js",
+      "name": "新韩剧网",
+      "driver": "script_js",
+      "capabilities": [
+        "vod"
+      ],
+      "source": {
+        "url": "https://raw.githubusercontent.com/unifangg/livedeck-sources/main/scripts/xinhanju_js.js",
+        "urls": [
+          "https://cdn.jsdelivr.net/gh/unifangg/livedeck-sources@main/scripts/xinhanju_js.js"
+        ],
+        "format": "js",
+        "version": "1.0.0"
+      },
+      "meta": {
+        "tags": [
+          "韩剧",
+          "电影",
+          "综艺",
+          "动漫",
+          "原生态JS"
+        ],
+        "geoHint": "CN",
+        "nsfw": false,
+        "enabledByDefault": true
+      },
+      "rateLimit": {
+        "maxConcurrent": 3,
+        "minIntervalMs": 150
+      },
+      "vod": {
+        "searchable": true,
+        "quickSearch": true,
+        "filterable": false
+      },
+      "playback": {
+        "relay": "auto"
+      }
+    },
+    {
+      "id": "acfun-js",
+      "name": "AcFun番剧",
+      "driver": "script_js",
+      "capabilities": [
+        "vod"
+      ],
+      "source": {
+        "url": "https://raw.githubusercontent.com/unifangg/livedeck-sources/main/scripts/acfun.js",
+        "urls": [
+          "https://cdn.jsdelivr.net/gh/unifangg/livedeck-sources@main/scripts/acfun.js"
+        ],
+        "format": "js",
+        "version": "1.0.0"
+      },
+      "meta": {
+        "tags": [
+          "番剧",
+          "动漫",
+          "短剧",
+          "筛选",
+          "原生态JS"
+        ],
+        "geoHint": "CN",
+        "nsfw": false,
+        "enabledByDefault": true
+      },
+      "rateLimit": {
+        "maxConcurrent": 3,
+        "minIntervalMs": 150
+      },
+      "vod": {
+        "searchable": true,
+        "quickSearch": true,
+        "filterable": true
+      },
+      "playback": {
+        "relay": "auto"
+      }
+    },
+    {
+      "id": "bilibili-js",
+      "name": "哔哩哔哩",
+      "driver": "script_js",
+      "capabilities": [
+        "vod"
+      ],
+      "source": {
+        "url": "https://raw.githubusercontent.com/unifangg/livedeck-sources/main/scripts/bilibili.js",
+        "urls": [
+          "https://cdn.jsdelivr.net/gh/unifangg/livedeck-sources@main/scripts/bilibili.js"
+        ],
+        "format": "js",
+        "version": "1.0.0"
+      },
+      "meta": {
+        "tags": [
+          "番剧",
+          "动漫",
+          "综合",
+          "筛选",
+          "原生态JS"
+        ],
+        "geoHint": "CN",
+        "nsfw": false,
+        "enabledByDefault": true
+      },
+      "rateLimit": {
+        "maxConcurrent": 3,
+        "minIntervalMs": 150
+      },
+      "vod": {
+        "searchable": true,
+        "quickSearch": true,
+        "filterable": true
+      },
+      "playback": {
+        "relay": "auto"
+      }
+    },
+    {
+      "id": "sohu-js",
+      "name": "搜狐视频",
+      "driver": "script_js",
+      "capabilities": [
+        "vod"
+      ],
+      "source": {
+        "url": "https://raw.githubusercontent.com/unifangg/livedeck-sources/main/scripts/sohu.js",
+        "urls": [
+          "https://cdn.jsdelivr.net/gh/unifangg/livedeck-sources@main/scripts/sohu.js"
+        ],
+        "format": "js",
+        "version": "1.0.0"
+      },
+      "meta": {
+        "tags": [
+          "电影",
+          "剧集",
+          "综艺",
+          "动漫",
+          "筛选",
+          "原生态JS"
+        ],
+        "geoHint": "CN",
+        "nsfw": false,
+        "enabledByDefault": true
+      },
+      "rateLimit": {
+        "maxConcurrent": 3,
+        "minIntervalMs": 150
+      },
+      "vod": {
+        "searchable": true,
+        "quickSearch": true,
+        "filterable": true
+      },
+      "playback": {
+        "relay": "auto"
+      }
+    },
+    {
+      "id": "cctv-variety-js",
+      "name": "央视综艺",
+      "driver": "script_js",
+      "capabilities": [
+        "vod"
+      ],
+      "source": {
+        "url": "https://raw.githubusercontent.com/unifangg/livedeck-sources/main/scripts/cctv_variety.js",
+        "urls": [
+          "https://cdn.jsdelivr.net/gh/unifangg/livedeck-sources@main/scripts/cctv_variety.js"
+        ],
+        "format": "js",
+        "version": "1.0.0"
+      },
+      "meta": {
+        "tags": [
+          "综艺",
+          "央视",
+          "原生态JS"
+        ],
+        "geoHint": "CN",
+        "nsfw": false,
+        "enabledByDefault": true
+      },
+      "rateLimit": {
+        "maxConcurrent": 3,
+        "minIntervalMs": 150
+      },
+      "vod": {
+        "searchable": true,
+        "quickSearch": true,
+        "filterable": false
+      },
+      "playback": {
+        "relay": "auto"
+      }
+    },
+    {
+      "id": "netease-pd-js",
+      "name": "网易公开课",
+      "driver": "script_js",
+      "capabilities": [
+        "vod"
+      ],
+      "source": {
+        "url": "https://raw.githubusercontent.com/unifangg/livedeck-sources/main/scripts/netease_pd.js",
+        "urls": [
+          "https://cdn.jsdelivr.net/gh/unifangg/livedeck-sources@main/scripts/netease_pd.js"
+        ],
+        "format": "js",
+        "version": "1.0.0"
+      },
+      "meta": {
+        "tags": [
+          "电影",
+          "纪录片",
+          "公开课",
+          "原生态JS"
+        ],
+        "geoHint": "CN",
+        "nsfw": false,
+        "enabledByDefault": true
+      },
+      "rateLimit": {
+        "maxConcurrent": 3,
+        "minIntervalMs": 150
+      },
+      "vod": {
+        "searchable": true,
+        "quickSearch": true,
+        "filterable": false
+      },
+      "playback": {
+        "relay": "auto"
+      }
+    },
+    {
+      "id": "xinpianchang-js",
+      "name": "新片场",
+      "driver": "script_js",
+      "capabilities": [
+        "vod"
+      ],
+      "source": {
+        "url": "https://raw.githubusercontent.com/unifangg/livedeck-sources/main/scripts/xinpianchang.js",
+        "urls": [
+          "https://cdn.jsdelivr.net/gh/unifangg/livedeck-sources@main/scripts/xinpianchang.js"
+        ],
+        "format": "js",
+        "version": "1.0.0"
+      },
+      "meta": {
+        "tags": [
+          "短片",
+          "广告",
+          "纪录片",
+          "原生态JS"
+        ],
+        "geoHint": "CN",
+        "nsfw": false,
+        "enabledByDefault": true
+      },
+      "rateLimit": {
+        "maxConcurrent": 3,
+        "minIntervalMs": 150
+      },
+      "vod": {
+        "searchable": true,
+        "quickSearch": true,
+        "filterable": false
+      },
+      "playback": {
+        "relay": "auto"
+      }
+    },
+    {
+      "id": "vimeo-js",
+      "name": "Vimeo精选",
+      "driver": "script_js",
+      "capabilities": [
+        "vod"
+      ],
+      "source": {
+        "url": "https://raw.githubusercontent.com/unifangg/livedeck-sources/main/scripts/vimeo.js",
+        "urls": [
+          "https://cdn.jsdelivr.net/gh/unifangg/livedeck-sources@main/scripts/vimeo.js"
+        ],
+        "format": "js",
+        "version": "1.0.0"
+      },
+      "meta": {
+        "tags": [
+          "短片",
+          "精选",
+          "海外",
+          "原生态JS"
+        ],
+        "geoHint": "GLOBAL",
+        "nsfw": false,
+        "enabledByDefault": true
+      },
+      "rateLimit": {
+        "maxConcurrent": 3,
+        "minIntervalMs": 150
+      },
+      "vod": {
+        "searchable": true,
+        "quickSearch": true,
+        "filterable": false
+      },
+      "playback": {
+        "relay": "auto"
+      }
+    },
+    {
+      "id": "duanjubashi-js",
+      "name": "短剧巴士",
+      "driver": "script_js",
+      "capabilities": [
+        "vod"
+      ],
+      "source": {
+        "url": "https://raw.githubusercontent.com/unifangg/livedeck-sources/main/scripts/duanjubashi.js",
+        "urls": [
+          "https://cdn.jsdelivr.net/gh/unifangg/livedeck-sources@main/scripts/duanjubashi.js"
+        ],
+        "format": "js",
+        "version": "1.0.0"
+      },
+      "meta": {
+        "tags": [
+          "短剧",
+          "筛选",
+          "原生态JS"
+        ],
+        "geoHint": "CN",
+        "nsfw": false,
+        "enabledByDefault": true
+      },
+      "rateLimit": {
+        "maxConcurrent": 3,
+        "minIntervalMs": 150
+      },
+      "vod": {
+        "searchable": true,
+        "quickSearch": true,
+        "filterable": true
+      },
+      "playback": {
+        "relay": "auto"
+      }
+    },
+    {
+      "id": "hema-js",
+      "name": "河马短剧",
+      "driver": "script_js",
+      "capabilities": [
+        "vod"
+      ],
+      "source": {
+        "url": "https://raw.githubusercontent.com/unifangg/livedeck-sources/main/scripts/hema.js",
+        "urls": [
+          "https://cdn.jsdelivr.net/gh/unifangg/livedeck-sources@main/scripts/hema.js"
+        ],
+        "format": "js",
+        "version": "1.0.0"
+      },
+      "meta": {
+        "tags": [
+          "短剧",
+          "原生态JS"
+        ],
+        "geoHint": "CN",
+        "nsfw": false,
+        "enabledByDefault": true
+      },
+      "rateLimit": {
+        "maxConcurrent": 3,
+        "minIntervalMs": 150
+      },
+      "vod": {
+        "searchable": true,
+        "quickSearch": true,
+        "filterable": false
+      },
+      "playback": {
+        "relay": "auto"
+      }
+    },
+    {
+      "id": "weiguan-js",
+      "name": "围观短剧",
+      "driver": "script_js",
+      "capabilities": [
+        "vod"
+      ],
+      "source": {
+        "url": "https://raw.githubusercontent.com/unifangg/livedeck-sources/main/scripts/weiguan.js",
+        "urls": [
+          "https://cdn.jsdelivr.net/gh/unifangg/livedeck-sources@main/scripts/weiguan.js"
+        ],
+        "format": "js",
+        "version": "1.0.0"
+      },
+      "meta": {
+        "tags": [
+          "短剧",
+          "多清晰度",
+          "筛选",
+          "原生态JS"
+        ],
+        "geoHint": "CN",
+        "nsfw": false,
+        "enabledByDefault": true
+      },
+      "rateLimit": {
+        "maxConcurrent": 3,
+        "minIntervalMs": 150
+      },
+      "vod": {
+        "searchable": true,
+        "quickSearch": true,
+        "filterable": true
+      },
+      "playback": {
+        "relay": "auto"
+      }
+    },
+    {
+      "id": "kuwoduanju-js",
+      "name": "酷我短剧",
+      "driver": "script_js",
+      "capabilities": [
+        "vod"
+      ],
+      "source": {
+        "url": "https://raw.githubusercontent.com/unifangg/livedeck-sources/main/scripts/kuwoduanju.js",
+        "urls": [
+          "https://cdn.jsdelivr.net/gh/unifangg/livedeck-sources@main/scripts/kuwoduanju.js"
+        ],
+        "format": "js",
+        "version": "1.0.0"
+      },
+      "meta": {
+        "tags": [
+          "短剧",
+          "原生态JS"
+        ],
+        "geoHint": "CN",
+        "nsfw": false,
+        "enabledByDefault": true
+      },
+      "rateLimit": {
+        "maxConcurrent": 3,
+        "minIntervalMs": 150
+      },
+      "vod": {
+        "searchable": true,
+        "quickSearch": true,
+        "filterable": false
+      },
+      "playback": {
+        "relay": "auto"
+      }
+    },
+    {
+      "id": "wusheng-js",
+      "name": "悟圣短剧",
+      "driver": "script_js",
+      "capabilities": [
+        "vod"
+      ],
+      "source": {
+        "url": "https://raw.githubusercontent.com/unifangg/livedeck-sources/main/scripts/wusheng.js",
+        "urls": [
+          "https://cdn.jsdelivr.net/gh/unifangg/livedeck-sources@main/scripts/wusheng.js"
+        ],
+        "format": "js",
+        "version": "1.0.0"
+      },
+      "meta": {
+        "tags": [
+          "短剧",
+          "原生态JS"
+        ],
+        "geoHint": "CN",
+        "nsfw": false,
+        "enabledByDefault": true
+      },
+      "rateLimit": {
+        "maxConcurrent": 3,
+        "minIntervalMs": 150
+      },
+      "vod": {
+        "searchable": true,
+        "quickSearch": true,
+        "filterable": false
+      },
+      "playback": {
+        "relay": "auto"
+      }
+    },
+    {
+      "id": "55-yingshi",
+      "name": "55影视",
+      "driver": "t4",
+      "capabilities": [
+        "vod"
+      ],
+      "source": {
+        "url": "http://192.129.140.23:5757/api/55%E5%BD%B1%E8%A7%86?pwd=dzyyds"
+      },
+      "meta": {
+        "tags": [
+          "影视",
+          "T4"
+        ],
+        "geoHint": "CN",
+        "nsfw": false,
+        "enabledByDefault": true
+      },
+      "rateLimit": {
+        "maxConcurrent": 3,
+        "minIntervalMs": 150
+      },
+      "vod": {
+        "searchable": true,
+        "quickSearch": true,
+        "filterable": true
+      },
+      "playback": {
+        "relay": "auto"
+      }
+    },
+    {
+      "id": "fenglin-t4",
+      "name": "枫林影视T4",
+      "driver": "t4",
+      "capabilities": [
+        "vod"
+      ],
+      "source": {
+        "url": "http://192.129.140.23:5757/api/%E6%9E%AB%E6%9E%97%E5%BD%B1%E8%A7%86?pwd=dzyyds"
+      },
+      "meta": {
+        "tags": [
+          "影视",
+          "T4"
+        ],
+        "geoHint": "CN",
+        "nsfw": false,
+        "enabledByDefault": true
+      },
+      "rateLimit": {
+        "maxConcurrent": 3,
+        "minIntervalMs": 150
+      },
+      "vod": {
+        "searchable": true,
+        "quickSearch": true,
+        "filterable": true
+      },
+      "playback": {
+        "relay": "auto"
+      }
+    },
+    {
+      "id": "xinhanju-t4",
+      "name": "新韩剧网T4",
+      "driver": "t4",
+      "capabilities": [
+        "vod"
+      ],
+      "source": {
+        "url": "http://192.129.140.23:5757/api/%E6%96%B0%E9%9F%A9%E5%89%A7%E7%BD%91?do=py&pwd=dzyyds"
+      },
+      "meta": {
+        "tags": [
+          "韩剧",
+          "T4"
+        ],
+        "geoHint": "CN",
+        "nsfw": false,
+        "enabledByDefault": true
+      },
+      "rateLimit": {
+        "maxConcurrent": 3,
+        "minIntervalMs": 150
+      },
+      "vod": {
+        "searchable": true,
+        "quickSearch": true,
+        "filterable": false
+      },
+      "playback": {
+        "relay": "auto"
+      }
+    },
+    {
+      "id": "longma-cms",
+      "name": "龙马影视",
+      "driver": "cms",
+      "capabilities": [
+        "vod"
+      ],
+      "source": {
+        "url": "http://jhysj.jiaheyy.top/api.php/provide/vod/"
+      },
+      "meta": {
+        "tags": [
+          "电影",
+          "剧集",
+          "动漫",
+          "CMS"
+        ],
+        "geoHint": "CN",
+        "nsfw": false,
+        "enabledByDefault": true
+      },
+      "rateLimit": {
+        "maxConcurrent": 3,
+        "minIntervalMs": 150
+      },
+      "vod": {
+        "searchable": true,
+        "quickSearch": true,
+        "filterable": false
+      },
+      "playback": {
+        "relay": "auto"
+      }
+    },
+    {
+      "id": "tingfeng-cms",
+      "name": "听风资源",
+      "driver": "cms",
+      "capabilities": [
+        "vod"
+      ],
+      "source": {
+        "url": "http://154.219.117.232:9981/jacloudapi.php/provide/vod/"
+      },
+      "meta": {
+        "tags": [
+          "电影",
+          "剧集",
+          "动漫",
+          "CMS"
+        ],
+        "geoHint": "CN",
+        "nsfw": false,
+        "enabledByDefault": true
+      },
+      "rateLimit": {
+        "maxConcurrent": 3,
+        "minIntervalMs": 150
+      },
+      "vod": {
+        "searchable": true,
+        "quickSearch": true,
+        "filterable": false
+      },
+      "playback": {
+        "relay": "auto"
+      }
+    },
+    {
+      "id": "juhe-cms",
+      "name": "聚合影视",
+      "driver": "cms",
+      "capabilities": [
+        "vod"
+      ],
+      "source": {
+        "url": "http://150.109.94.44:1112/api.php/provide/vod/"
+      },
+      "meta": {
+        "tags": [
+          "电影",
+          "剧集",
+          "动漫",
+          "CMS"
+        ],
+        "geoHint": "CN",
+        "nsfw": false,
+        "enabledByDefault": true
+      },
+      "rateLimit": {
+        "maxConcurrent": 3,
+        "minIntervalMs": 150
+      },
+      "vod": {
+        "searchable": true,
+        "quickSearch": true,
+        "filterable": false
+      },
+      "playback": {
+        "relay": "auto"
+      }
+    }
+  ]
+}
