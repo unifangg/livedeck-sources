@@ -39,11 +39,19 @@ declare global {
     loginChallengeProtocol: number;
     credentialExposure: boolean;
     http: boolean;
+    multipart: boolean;
+    brotli: boolean;
     html: boolean;
     xml: boolean;
     crypto: boolean;
+    aesCfb: boolean;
+    aesOfb: boolean;
     des: boolean;
     rsa: boolean;
+    rsaOaep: boolean;
+    rsaSign: boolean;
+    pbkdf2: boolean;
+    sm4: boolean;
     codec: boolean;
     text: boolean;
     cache: boolean;
@@ -54,6 +62,14 @@ declare global {
     localProxy: boolean;
   }
 
+  type HostMultipartPart = {
+    name: string;
+    value?: string | number | boolean;
+    valueBase64?: string;
+    filename?: string;
+    contentType?: string;
+  };
+
   interface HostHttpRequestOptions {
     url: string;
     method?: "GET" | "POST" | "HEAD" | "PUT" | "PATCH" | "DELETE";
@@ -63,6 +79,7 @@ declare global {
     params?: Record<string, string>;
     json?: unknown;
     form?: Record<string, string>;
+    multipart?: Record<string, string | number | boolean> | HostMultipartPart[];
     insecureTls?: boolean;
     timeout?: number;
     followRedirects?: boolean;
@@ -103,7 +120,8 @@ declare global {
   }
 
   type BinaryInput = string | ArrayBuffer | ArrayBufferView | number[];
-  type AesMode = "cbc" | "ecb" | "ctr" | "gcm";
+  type AesMode = "cbc" | "ecb" | "ctr" | "gcm" | "cfb" | "cfb8" | "ofb";
+  type Sm4Mode = "cbc" | "ecb" | "ctr" | "cfb" | "ofb";
   type AesPadding = "pkcs7" | "pkcs5" | "zero" | "none";
   type ByteEncoding = "utf8" | "base64" | "base64url" | "hex";
 
@@ -138,7 +156,34 @@ declare global {
     key?: string;
     publicKey?: string;
     privateKey?: string;
+    padding?: "pkcs1" | "oaep" | "oaep-sha256" | "oaep-sha1";
+    hash?: "sha256" | "sha1" | "sha512" | "md5";
+    signature?: string;
+    signatureEncoding?: ByteEncoding;
     dataEncoding?: ByteEncoding;
+    outputEncoding?: ByteEncoding;
+  }
+
+  interface HostPbkdf2Options {
+    password: string;
+    salt: string;
+    iterations?: number;
+    keyLen?: number;
+    algo?: "sha256" | "sha1" | "sha512";
+    passwordEncoding?: ByteEncoding;
+    saltEncoding?: ByteEncoding;
+    outputEncoding?: ByteEncoding;
+  }
+
+  interface HostSm4Options {
+    data: string;
+    dataEncoding?: ByteEncoding;
+    key: string;
+    keyEncoding?: ByteEncoding;
+    iv?: string;
+    ivEncoding?: ByteEncoding;
+    mode?: Sm4Mode;
+    padding?: AesPadding;
     outputEncoding?: ByteEncoding;
   }
 
@@ -169,6 +214,12 @@ declare global {
         options?: Omit<HostHttpRequestOptions, "url" | "method" | "body">,
       ): Promise<HostHttpResponse>;
       head(url: string, options?: Omit<HostHttpRequestOptions, "url" | "method">): Promise<HostHttpResponse>;
+      put(
+        url: string,
+        body?: string,
+        options?: Omit<HostHttpRequestOptions, "url" | "method" | "body">,
+      ): Promise<HostHttpResponse>;
+      delete(url: string, options?: Omit<HostHttpRequestOptions, "url" | "method">): Promise<HostHttpResponse>;
       batch(requests: HostHttpRequestOptions[], concurrency?: number): Promise<HostHttpBatchItemResult[]>;
     };
     html: {
@@ -209,6 +260,11 @@ declare global {
       rsaEncrypt(options: HostRsaOptions): string;
       rsaDecrypt(options: HostRsaOptions): string;
       rsaPublicDecrypt(options: HostRsaOptions): string;
+      rsaSign(options: HostRsaOptions): string;
+      rsaVerify(options: HostRsaOptions): boolean;
+      pbkdf2(options: HostPbkdf2Options): string;
+      sm4Encrypt(options: HostSm4Options): string;
+      sm4Decrypt(options: HostSm4Options): string;
       rc4(key: BinaryInput, data: BinaryInput, options?: { dataEncoding?: ByteEncoding; outputEncoding?: ByteEncoding }): string;
       randomBytes(len: number, outputEncoding?: ByteEncoding | "bytes"): string | number[];
       uuid(): string;
@@ -285,24 +341,30 @@ declare global {
     filters?: SdkVodFilterGroup[];
   }
 
-  interface SdkVodItem {
+   interface SdkVodItem {
     vodId: string;
     title: string;
+    originalTitle?: string | null;
     subtitle?: string | null;
     poster?: string | null;
     backdrop?: string | null;
     remark?: string | null;
     year?: number | null;
+    season?: number | null;
     region?: string | null;
     genres?: string[];
     rating?: string | null;
     kind?: "movie" | "series" | "anime" | "variety" | "documentary" | "other" | null;
+    doubanId?: string | null;
+    tmdbId?: string | null;
+    imdbId?: string | null;
   }
 
   interface SdkVodEpisode {
     episodeId: string;
     name: string;
     index: number;
+    episodeNumber?: number | null;
     playData: string;
     durationSec?: number | null;
   }
@@ -321,6 +383,57 @@ declare global {
     sources: SdkVodPlaySource[];
   }
 
+  interface SdkSkipSegment {
+    start: number;
+    end: number;
+    kind: "intro" | "outro" | "ad" | "recap" | string;
+  }
+
+  interface SdkSkipInfo {
+    intro?: [number, number] | null;
+    outro?: [number, number] | null;
+    segments?: SdkSkipSegment[];
+  }
+
+  interface SdkTimedDanmakuComment {
+    timeSec: number;
+    /** `0` scrolling, `1` top fixed, `2` bottom fixed. */
+    mode?: number;
+    /** 24-bit RGB integer, e.g. `16777215` for `#FFFFFF`. */
+    color?: number;
+    text: string;
+  }
+
+  interface SdkDanmakuTrack {
+    label: string;
+    format?: "auto" | "bilibili_xml" | "dandanplay_json" | "dplayer_json" | string | null;
+    url?: string | null;
+    headers?: Record<string, string>;
+    comments?: SdkTimedDanmakuComment[];
+  }
+
+  interface SdkMediaMatchContext {
+    title: string;
+    originalTitle?: string | null;
+    year?: number | null;
+    season?: number | null;
+    episode?: number | null;
+    episodeName?: string | null;
+    durationSec?: number | null;
+    doubanId?: string | null;
+    tmdbId?: string | null;
+    imdbId?: string | null;
+    playUrl?: string | null;
+  }
+
+  interface SdkDanmakuSearchMatch {
+    episodeId: string;
+    animeTitle: string;
+    episodeTitle: string;
+    episodeNumber?: number | null;
+    commentCount?: number | null;
+  }
+
   interface SdkMediaPlayResult {
     streams: Array<{
       label: string;
@@ -337,7 +450,8 @@ declare global {
     subtitles?: Array<{
       label: string;
       lang?: string | null;
-      url: string;
+      url?: string | null;
+      body?: string | null;
       format?: string | null;
     }>;
     audioTracks?: Array<{
@@ -345,6 +459,8 @@ declare global {
       lang?: string | null;
       url: string;
     }>;
+    skip?: SdkSkipInfo | null;
+    danmakuTracks?: SdkDanmakuTrack[];
   }
 
   interface SdkProxyResponse {
@@ -394,6 +510,26 @@ declare global {
     }):
       | Promise<SdkProxyResponse>
       | SdkProxyResponse;
+    searchDanmaku?(payload: {
+      keyword: string;
+      year?: number | null;
+      season?: number | null;
+      episode?: number | null;
+      config: Record<string, unknown>;
+    }):
+      | Promise<{ matches: SdkDanmakuSearchMatch[] } | SdkDanmakuSearchMatch[]>
+      | { matches: SdkDanmakuSearchMatch[] }
+      | SdkDanmakuSearchMatch[];
+    getDanmaku?(payload: {
+      episodeId?: string;
+      title?: string | null;
+      episode?: number | null;
+      playUrl?: string | null;
+      config: Record<string, unknown>;
+    }):
+      | Promise<{ comments?: SdkTimedDanmakuComment[]; url?: string; format?: string } | SdkTimedDanmakuComment[]>
+      | { comments?: SdkTimedDanmakuComment[]; url?: string; format?: string }
+      | SdkTimedDanmakuComment[];
   }
 
   var LiveDeckVod: LiveDeckVodPlugin | undefined;

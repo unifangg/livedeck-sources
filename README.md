@@ -14,11 +14,15 @@ https://raw.githubusercontent.com/unifangg/livedeck-sources/main/manifest.json
 
 ## 源来源与移植说明
 
-本仓库不单独罗列具体影视站点清单，所有内置源均移植或整理自以下开源社区生态，并统一重写为 LiveDeck 协议与沙盒接口：
+本仓库不单独罗列具体影视站点清单，所有内置源均移植或整理自以下开源社区配置与规则生态，并统一重写为 LiveDeck 协议与沙盒接口：
 
-- **Python Spider / TVBox / CatVodSpider 开源生态**：将原本依赖 Python 运行时、本地 HTTP 代理与 `BeautifulSoup` / `PyQuery` 的规则脚本，重写为无外部依赖的单文件 QuickJS `script_js` 插件（使用 `Host.http`、`Host.html`、`Host.crypto`、`Host.codec` 与 `Host.text` 原生桥接）。
-- **`drpy` / `drpy2` 规则生态**：移植常见网页规则与多维筛选逻辑，直接使用 LiveDeck 内建的 `Host.html.pdfa` / `pdfh` / `pd` 与 `Host.text.extractJson` 解析管线。
-- **标准 MacCMS V10 与 T4 公开接口**：以纯声明式 `cms` / `t4` 条目接入 `livedeck.manifest/v1`，并配合 `adRules` 进行 HLS 广告切片净化。
+- **上游配置参考来源**：
+  - [`wliqi495-create/jaychou123` (`yingshi/test1.json`)](https://raw.githubusercontent.com/wliqi495-create/jaychou123/refs/heads/main/yingshi/test1.json)（主要 Python Spider、T4 与部分 CMS 源移植来源）
+  - [`qist/tvbox` (`fty.json`)](https://raw.githubusercontent.com/qist/tvbox/master/fty.json)（TVBox 社区配置参考来源）
+  - [Bright Harbor `tvbox.json`](https://bright-harbor.pages.dev/v1/tvbox.json)（TVBox 社区配置参考来源）
+- **移植与重写方式**：
+  - 将原本依赖 Python 运行时、本地 HTTP 代理与 `BeautifulSoup` / `PyQuery` 的爬虫规则，重写为无外部依赖的单文件 QuickJS `script_js` 插件（通过 `Host.http`、`Host.html`、`Host.crypto`、`Host.codec` 与 `Host.text` 原生桥接运行）。
+  - 保留原有 `drpy` 选择器链路（`Host.html.pdfa` / `pdfh` / `pd`）与标准 `cms` / `t4` 声明式配置，配合 `adRules` 完成 HLS 广告切片净化。
 
 > 如果想学习如何从零编写 LiveDeck 点播源、直播扩展或将这些社区规则迁移到 LiveDeck，请访问 [LiveDeck 官方文档](https://livedeck-app.github.io/docs/)。
 
