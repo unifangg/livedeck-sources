@@ -2248,7 +2248,7 @@
           "https://cdn.jsdelivr.net/gh/unifangg/livedeck-sources@main/scripts/quark_drive.js"
         ],
         "format": "js",
-        "version": "1.0.1",
+        "version": "1.1.0",
         "apiVersion": 1
       },
       "auth": {
@@ -2302,7 +2302,7 @@
           "https://cdn.jsdelivr.net/gh/unifangg/livedeck-sources@main/scripts/duoduo_pan.js"
         ],
         "format": "js",
-        "version": "1.0.0",
+        "version": "1.1.0",
         "apiVersion": 1
       },
       "auth": {
@@ -2311,7 +2311,8 @@
           "cookie"
         ],
         "slots": [
-          "cloud:quark"
+          "cloud:quark",
+          "cloud:uc"
         ]
       },
       "meta": {
@@ -2356,7 +2357,7 @@
           "https://cdn.jsdelivr.net/gh/unifangg/livedeck-sources@main/scripts/ouge_pan.js"
         ],
         "format": "js",
-        "version": "1.0.0",
+        "version": "1.1.0",
         "apiVersion": 1
       },
       "auth": {
@@ -2365,7 +2366,8 @@
           "cookie"
         ],
         "slots": [
-          "cloud:quark"
+          "cloud:quark",
+          "cloud:uc"
         ]
       },
       "meta": {
@@ -2410,7 +2412,7 @@
           "https://cdn.jsdelivr.net/gh/unifangg/livedeck-sources@main/scripts/huban_pan.js"
         ],
         "format": "js",
-        "version": "1.0.0",
+        "version": "1.1.0",
         "apiVersion": 1
       },
       "auth": {
@@ -2419,7 +2421,8 @@
           "cookie"
         ],
         "slots": [
-          "cloud:quark"
+          "cloud:quark",
+          "cloud:uc"
         ]
       },
       "meta": {
@@ -2464,7 +2467,7 @@
           "https://cdn.jsdelivr.net/gh/unifangg/livedeck-sources@main/scripts/pan_4kzn.js"
         ],
         "format": "js",
-        "version": "1.0.0",
+        "version": "1.1.0",
         "apiVersion": 1
       },
       "auth": {
@@ -2473,7 +2476,8 @@
           "cookie"
         ],
         "slots": [
-          "cloud:quark"
+          "cloud:quark",
+          "cloud:uc"
         ]
       },
       "meta": {
@@ -2518,7 +2522,7 @@
           "https://cdn.jsdelivr.net/gh/unifangg/livedeck-sources@main/scripts/quark4k_pan.js"
         ],
         "format": "js",
-        "version": "1.0.0",
+        "version": "1.1.0",
         "apiVersion": 1
       },
       "auth": {
@@ -2527,7 +2531,8 @@
           "cookie"
         ],
         "slots": [
-          "cloud:quark"
+          "cloud:quark",
+          "cloud:uc"
         ]
       },
       "meta": {
@@ -2572,7 +2577,7 @@
           "https://cdn.jsdelivr.net/gh/unifangg/livedeck-sources@main/scripts/aipan_pan.js"
         ],
         "format": "js",
-        "version": "1.0.0",
+        "version": "1.1.0",
         "apiVersion": 1
       },
       "auth": {
@@ -2581,7 +2586,8 @@
           "cookie"
         ],
         "slots": [
-          "cloud:quark"
+          "cloud:quark",
+          "cloud:uc"
         ]
       },
       "meta": {

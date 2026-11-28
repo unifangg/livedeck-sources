@@ -321,9 +321,83 @@ declare global {
     ws: {
       open(options: { url: string; headers?: Record<string, string> }): Promise<HostWsConnection>;
     };
+    cloud: {
+      readonly TEMP_DIR_NAME: string;
+      isVideoFile(file: Record<string, unknown>): boolean;
+      isSubtitleFile(file: Record<string, unknown>): boolean;
+      formatBytes(n: number): string;
+      matchSubtitles(
+        baseName: string,
+        subFiles: Array<Record<string, unknown>>,
+        maxFolderWide?: number,
+      ): Array<{ fid: string; fidToken: string; name: string; format: string }>;
+      extractShares(text: string): CloudShareRef[];
+      resolveShareSources(
+        sharesOrText: string | CloudShareRef[],
+        options?: { maxShares?: number; maxFolders?: number; apiBase?: string; apiBaseByProvider?: Record<string, string> },
+      ): Promise<SdkVodPlaySource[]>;
+      playShare(
+        playData: string | Record<string, unknown>,
+        options?: { apiBase?: string; apiBaseByProvider?: Record<string, string> },
+      ): Promise<SdkVodPlayResult>;
+      quark: HostCloudClient;
+      uc: HostCloudClient;
+    };
     makeError(code: string, message: string, context?: Record<string, unknown>): Error;
     raise(code: string, message: string, context?: Record<string, unknown>): never;
   };
+
+  type CloudShareProvider = "quark" | "uc" | "aliyun" | "115" | "tianyi" | "baidu" | "123";
+
+  interface CloudShareRef {
+    provider: CloudShareProvider;
+    pwdId: string;
+    passcode: string;
+    url: string;
+  }
+
+  interface HostCloudClient {
+    readonly slot: string;
+    readonly provider: CloudShareProvider;
+    readonly label: string;
+    readonly tempDirName: string;
+    isLoggedIn(): boolean;
+    request(
+      pathname: string,
+      options?: {
+        method?: string;
+        params?: Record<string, string>;
+        json?: unknown;
+        headers?: Record<string, string>;
+        timeout?: number;
+        apiBase?: string;
+      },
+    ): Promise<Record<string, unknown>>;
+    listFolder(
+      pdirFid: string,
+      page?: number,
+      size?: number,
+      options?: { apiBase?: string },
+    ): Promise<{ list: Array<Record<string, unknown>>; total: number }>;
+    listFoldersBatch(
+      fids: string[],
+      size?: number,
+      options?: { apiBase?: string; timeout?: number },
+    ): Promise<Record<string, { list: Array<Record<string, unknown>>; total: number }>>;
+    playFile(
+      fid: string,
+      subs?: Array<{ fid: string; name: string; format?: string }>,
+      options?: { apiBase?: string },
+    ): Promise<SdkVodPlayResult>;
+    resolveShares(
+      shares: CloudShareRef[],
+      options?: { maxShares?: number; maxFolders?: number; apiBase?: string },
+    ): Promise<SdkVodPlaySource[]>;
+    playShare(
+      playData: string | Record<string, unknown>,
+      options?: { apiBase?: string },
+    ): Promise<SdkVodPlayResult>;
+  }
 
   /** Jailed CommonJS relative loader (`./` or `../` inside package root, `.js`/`.json` only). */
   function require(specifier: string): unknown;
