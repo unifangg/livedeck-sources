@@ -2248,7 +2248,7 @@
           "https://cdn.jsdelivr.net/gh/unifangg/livedeck-sources@main/scripts/quark_drive.js"
         ],
         "format": "js",
-        "version": "1.0.0",
+        "version": "1.0.1",
         "apiVersion": 1
       },
       "auth": {

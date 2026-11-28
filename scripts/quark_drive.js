@@ -45,6 +45,16 @@
     return Boolean(file && file.file && SUB_EXTS[getExt(file.file_name)]);
   }
 
+  const IGNORED_FOLDERS = {
+    _LiveDeck_Temp: true,
+  };
+
+  function isIgnoredFolder(file) {
+    if (!file || file.file) return false;
+    const name = Host.text.htmlUnescape(file.file_name || "").trim();
+    return Boolean(IGNORED_FOLDERS[name]);
+  }
+
   function formatBytes(n) {
     const num = Number(n || 0);
     if (!num || num <= 0) return "";
@@ -178,6 +188,66 @@
     return { list, total };
   }
 
+  async function listFoldersBatch(fids, size) {
+    const out = {};
+    if (!Array.isArray(fids) || fids.length === 0) return out;
+    const cookie = requireCookie();
+    const baseHeaders = {
+      Cookie: cookie,
+      Referer: REFERER,
+      Accept: "application/json, text/plain, */*",
+      "User-Agent": QUARK_UA,
+    };
+    const chunkSize = 16;
+    for (let offset = 0; offset < fids.length; offset += chunkSize) {
+      const chunk = fids.slice(offset, offset + chunkSize);
+      const reqs = chunk.map((fid) => ({
+        url: API_BASE + "/file/sort",
+        method: "GET",
+        params: {
+          pr: "ucpro",
+          fr: "pc",
+          uc_param_str: "",
+          pdir_fid: String(fid || "0"),
+          _page: "1",
+          _size: String(size || 100),
+          _fetch_total: "1",
+          fetch_all_file: "1",
+          fetch_risk_file_name: "1",
+          _sort: "file_type:asc,file_name:asc",
+        },
+        headers: baseHeaders,
+        timeout: 15,
+      }));
+      const results = await Host.http.batch(reqs, 4);
+      let latestCookie = cookie;
+      for (let i = 0; i < chunk.length; i += 1) {
+        const fid = String(chunk[i]);
+        const entry = Array.isArray(results) ? results[i] : null;
+        if (!entry || !entry.ok || !entry.response) {
+          out[fid] = { list: [], total: 0 };
+          continue;
+        }
+        if (entry.response.setCookieHeaders) {
+          latestCookie = syncSetCookies(latestCookie, entry.response.setCookieHeaders);
+        }
+        try {
+          const data = JSON.parse(entry.response.bodyText || "{}");
+          if (!entry.response.ok || (data.code !== 0 && data.status >= 400)) {
+            out[fid] = { list: [], total: 0 };
+            continue;
+          }
+          const list = (data.data && data.data.list) || [];
+          const total = (data.metadata && data.metadata._total) || list.length;
+          out[fid] = { list, total };
+        } catch (_) {
+          out[fid] = { list: [], total: 0 };
+        }
+      }
+    }
+    return out;
+  }
+
   function matchSubtitles(baseName, subFiles) {
     const stem = String(baseName || "").replace(/\.[^.]+$/, "").toLowerCase();
     const exact = [];
@@ -195,27 +265,64 @@
     return exact.length > 0 ? exact : folderWide.slice(0, 6);
   }
 
+  function mapEpisodes(videos, subs) {
+    return videos.map((v, idx) => {
+      const epName = Host.text.htmlUnescape(v.file_name || "视频 " + (idx + 1));
+      return {
+        episodeId: v.fid,
+        name: epName + (v.size ? " (" + formatBytes(v.size) + ")" : ""),
+        index: idx + 1,
+        playData: JSON.stringify({ fid: v.fid, subs: matchSubtitles(epName, subs) }),
+      };
+    });
+  }
+
   globalThis.LiveDeckVod = {
     async home() {
       const { list } = await listFolder("0", 1, 100);
-      const categories = [];
+      const rootDirs = [];
       const featured = [];
       list.forEach((f) => {
-        const name = Host.text.htmlUnescape(f.file_name || "");
         if (!f.file) {
-          categories.push({ id: String(f.fid), name: name || "文件夹" });
+          if (!isIgnoredFolder(f)) rootDirs.push(f);
         } else if (isVideoFile(f)) {
           featured.push(mapEntryToVodItem(f, "0"));
         }
       });
+
+      const categories = [];
+      const probed = rootDirs.slice(0, 16);
+      const childMap = await listFoldersBatch(
+        probed.map((f) => f.fid),
+        50,
+      );
+      rootDirs.forEach((f, idx) => {
+        const name = Host.text.htmlUnescape(f.file_name || "") || "文件夹";
+        if (idx < probed.length) {
+          const childRes = childMap[String(f.fid)] || { list: [], total: 0 };
+          const directVideos = childRes.list.filter(isVideoFile);
+          const subDirs = childRes.list.filter((c) => !c.file && !isIgnoredFolder(c));
+          if (directVideos.length === 0 && subDirs.length > 0 && subDirs.length <= 12) {
+            subDirs.forEach((sf) => {
+              const sfName = Host.text.htmlUnescape(sf.file_name || "") || "子目录";
+              categories.push({ id: String(sf.fid), name: name + " / " + sfName });
+            });
+            return;
+          }
+        }
+        categories.push({ id: String(f.fid), name });
+      });
+
       return { categories, featured };
     },
 
     async category({ categoryId, page }) {
       const pg = Math.max(1, Number(page || 1));
-      const { list, total } = await listFolder(categoryId || "0", pg, 60);
+      const pageSize = 100;
+      const { list, total } = await listFolder(categoryId || "0", pg, pageSize);
       const items = [];
       list.forEach((f) => {
+        if (isIgnoredFolder(f)) return;
         if (!f.file || isVideoFile(f)) {
           items.push(mapEntryToVodItem(f, categoryId || "0"));
         }
@@ -223,7 +330,7 @@
       return {
         items,
         page: pg,
-        hasMore: pg * 60 < total,
+        hasMore: pg * pageSize < total,
       };
     },
 
@@ -241,6 +348,7 @@
       const total = (data.metadata && data.metadata._total) || list.length;
       const items = [];
       list.forEach((f) => {
+        if (isIgnoredFolder(f)) return;
         if (!f.file || isVideoFile(f)) {
           items.push(mapEntryToVodItem(f, f.pdir_fid || "0"));
         }
@@ -257,45 +365,63 @@
         const { list } = await listFolder(dirFid, 1, 200);
         const videos = list.filter(isVideoFile);
         const subs = list.filter(isSubtitleFile);
-        const subFolders = list.filter((f) => !f.file).slice(0, 8);
+        const subFolders = list.filter((f) => !f.file && !isIgnoredFolder(f)).slice(0, 48);
         const sources = [];
         if (videos.length > 0) {
           sources.push({
             sourceId: "dir-" + dirFid,
             name: "当前目录",
-            episodes: videos.map((v, idx) => {
-              const epName = Host.text.htmlUnescape(v.file_name || "视频 " + (idx + 1));
-              return {
-                episodeId: v.fid,
-                name: epName + (v.size ? " (" + formatBytes(v.size) + ")" : ""),
-                index: idx + 1,
-                playData: JSON.stringify({ fid: v.fid, subs: matchSubtitles(epName, subs) }),
-              };
-            }),
+            episodes: mapEpisodes(videos, subs),
           });
         }
-        for (let i = 0; i < subFolders.length; i += 1) {
-          const sf = subFolders[i];
+
+        const subMap = await listFoldersBatch(
+          subFolders.map((sf) => sf.fid),
+          200,
+        );
+        const grandSubs = [];
+        subFolders.forEach((sf) => {
           const sfName = Host.text.htmlUnescape(sf.file_name || "子目录");
-          const subRes = await listFolder(sf.fid, 1, 200);
-          const sfVideos = subRes.list.filter(isVideoFile);
+          const sfRes = subMap[String(sf.fid)] || { list: [], total: 0 };
+          const sfVideos = sfRes.list.filter(isVideoFile);
           if (sfVideos.length > 0) {
-            const sfSubs = subRes.list.filter(isSubtitleFile);
+            const sfSubs = sfRes.list.filter(isSubtitleFile);
             sources.push({
               sourceId: "sub-" + sf.fid,
               name: sfName,
-              episodes: sfVideos.map((v, idx) => {
-                const epName = Host.text.htmlUnescape(v.file_name || "视频 " + (idx + 1));
-                return {
-                  episodeId: v.fid,
-                  name: epName + (v.size ? " (" + formatBytes(v.size) + ")" : ""),
-                  index: idx + 1,
-                  playData: JSON.stringify({ fid: v.fid, subs: matchSubtitles(epName, sfSubs) }),
-                };
-              }),
+              episodes: mapEpisodes(sfVideos, sfSubs),
             });
           }
+          sfRes.list
+            .filter((c) => !c.file && !isIgnoredFolder(c))
+            .forEach((gsf) => {
+              if (grandSubs.length < 48) {
+                grandSubs.push({ parentName: sfName, folder: gsf });
+              }
+            });
+        });
+
+        if (grandSubs.length > 0) {
+          const grandMap = await listFoldersBatch(
+            grandSubs.map((g) => g.folder.fid),
+            200,
+          );
+          grandSubs.forEach((g) => {
+            const gsf = g.folder;
+            const gsfName = Host.text.htmlUnescape(gsf.file_name || "子目录");
+            const gsfRes = grandMap[String(gsf.fid)] || { list: [], total: 0 };
+            const gsfVideos = gsfRes.list.filter(isVideoFile);
+            if (gsfVideos.length > 0) {
+              const gsfSubs = gsfRes.list.filter(isSubtitleFile);
+              sources.push({
+                sourceId: "sub-" + gsf.fid,
+                name: g.parentName + " / " + gsfName,
+                episodes: mapEpisodes(gsfVideos, gsfSubs),
+              });
+            }
+          });
         }
+
         return {
           vodId: raw,
           title: dirTitle,
