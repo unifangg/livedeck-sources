@@ -2228,6 +2228,385 @@
       "playback": {
         "relay": "auto"
       }
+    },
+    {
+      "id": "quark-drive-js",
+      "name": "夸克网盘（个人目录）",
+      "driver": "script_js",
+      "capabilities": [
+        "vod"
+      ],
+      "requiredPermissions": [
+        "network:public",
+        "auth:session",
+        "local_proxy",
+        "storage"
+      ],
+      "source": {
+        "url": "https://raw.githubusercontent.com/unifangg/livedeck-sources/main/scripts/quark_drive.js",
+        "urls": [
+          "https://cdn.jsdelivr.net/gh/unifangg/livedeck-sources@main/scripts/quark_drive.js"
+        ],
+        "format": "js",
+        "version": "1.0.0",
+        "apiVersion": 1
+      },
+      "auth": {
+        "mode": "cookie",
+        "methods": [
+          "cookie"
+        ],
+        "slots": [
+          "cloud:quark"
+        ]
+      },
+      "meta": {
+        "tags": [
+          "网盘",
+          "夸克",
+          "原画直出"
+        ],
+        "geoHint": "CN",
+        "nsfw": false,
+        "enabledByDefault": true
+      },
+      "rateLimit": {
+        "maxConcurrent": 3,
+        "minIntervalMs": 200
+      },
+      "vod": {
+        "searchable": true,
+        "quickSearch": true,
+        "filterable": false
+      },
+      "playback": {
+        "relay": "always"
+      }
+    },
+    {
+      "id": "duoduo-pan-js",
+      "name": "多多网盘",
+      "driver": "script_js",
+      "capabilities": [
+        "vod"
+      ],
+      "requiredPermissions": [
+        "network:public",
+        "auth:session",
+        "local_proxy",
+        "storage"
+      ],
+      "source": {
+        "url": "https://raw.githubusercontent.com/unifangg/livedeck-sources/main/scripts/duoduo_pan.js",
+        "urls": [
+          "https://cdn.jsdelivr.net/gh/unifangg/livedeck-sources@main/scripts/duoduo_pan.js"
+        ],
+        "format": "js",
+        "version": "1.0.0",
+        "apiVersion": 1
+      },
+      "auth": {
+        "mode": "cookie",
+        "methods": [
+          "cookie"
+        ],
+        "slots": [
+          "cloud:quark"
+        ]
+      },
+      "meta": {
+        "tags": [
+          "网盘",
+          "夸克",
+          "4K"
+        ],
+        "geoHint": "CN",
+        "nsfw": false,
+        "enabledByDefault": true
+      },
+      "rateLimit": {
+        "maxConcurrent": 3,
+        "minIntervalMs": 200
+      },
+      "vod": {
+        "searchable": true,
+        "quickSearch": true,
+        "filterable": false
+      },
+      "playback": {
+        "relay": "always"
+      }
+    },
+    {
+      "id": "ouge-pan-js",
+      "name": "欧歌网盘",
+      "driver": "script_js",
+      "capabilities": [
+        "vod"
+      ],
+      "requiredPermissions": [
+        "network:public",
+        "auth:session",
+        "local_proxy",
+        "storage"
+      ],
+      "source": {
+        "url": "https://raw.githubusercontent.com/unifangg/livedeck-sources/main/scripts/ouge_pan.js",
+        "urls": [
+          "https://cdn.jsdelivr.net/gh/unifangg/livedeck-sources@main/scripts/ouge_pan.js"
+        ],
+        "format": "js",
+        "version": "1.0.0",
+        "apiVersion": 1
+      },
+      "auth": {
+        "mode": "cookie",
+        "methods": [
+          "cookie"
+        ],
+        "slots": [
+          "cloud:quark"
+        ]
+      },
+      "meta": {
+        "tags": [
+          "网盘",
+          "夸克",
+          "4K"
+        ],
+        "geoHint": "CN",
+        "nsfw": false,
+        "enabledByDefault": true
+      },
+      "rateLimit": {
+        "maxConcurrent": 3,
+        "minIntervalMs": 200
+      },
+      "vod": {
+        "searchable": true,
+        "quickSearch": true,
+        "filterable": false
+      },
+      "playback": {
+        "relay": "always"
+      }
+    },
+    {
+      "id": "huban-pan-js",
+      "name": "虎斑网盘",
+      "driver": "script_js",
+      "capabilities": [
+        "vod"
+      ],
+      "requiredPermissions": [
+        "network:public",
+        "auth:session",
+        "local_proxy",
+        "storage"
+      ],
+      "source": {
+        "url": "https://raw.githubusercontent.com/unifangg/livedeck-sources/main/scripts/huban_pan.js",
+        "urls": [
+          "https://cdn.jsdelivr.net/gh/unifangg/livedeck-sources@main/scripts/huban_pan.js"
+        ],
+        "format": "js",
+        "version": "1.0.0",
+        "apiVersion": 1
+      },
+      "auth": {
+        "mode": "cookie",
+        "methods": [
+          "cookie"
+        ],
+        "slots": [
+          "cloud:quark"
+        ]
+      },
+      "meta": {
+        "tags": [
+          "网盘",
+          "夸克",
+          "4K"
+        ],
+        "geoHint": "CN",
+        "nsfw": false,
+        "enabledByDefault": true
+      },
+      "rateLimit": {
+        "maxConcurrent": 3,
+        "minIntervalMs": 200
+      },
+      "vod": {
+        "searchable": true,
+        "quickSearch": true,
+        "filterable": false
+      },
+      "playback": {
+        "relay": "always"
+      }
+    },
+    {
+      "id": "pan-4kzn-js",
+      "name": "4K指南网盘",
+      "driver": "script_js",
+      "capabilities": [
+        "vod"
+      ],
+      "requiredPermissions": [
+        "network:public",
+        "auth:session",
+        "local_proxy",
+        "storage"
+      ],
+      "source": {
+        "url": "https://raw.githubusercontent.com/unifangg/livedeck-sources/main/scripts/pan_4kzn.js",
+        "urls": [
+          "https://cdn.jsdelivr.net/gh/unifangg/livedeck-sources@main/scripts/pan_4kzn.js"
+        ],
+        "format": "js",
+        "version": "1.0.0",
+        "apiVersion": 1
+      },
+      "auth": {
+        "mode": "cookie",
+        "methods": [
+          "cookie"
+        ],
+        "slots": [
+          "cloud:quark"
+        ]
+      },
+      "meta": {
+        "tags": [
+          "网盘",
+          "夸克",
+          "4K"
+        ],
+        "geoHint": "CN",
+        "nsfw": false,
+        "enabledByDefault": true
+      },
+      "rateLimit": {
+        "maxConcurrent": 3,
+        "minIntervalMs": 200
+      },
+      "vod": {
+        "searchable": true,
+        "quickSearch": false,
+        "filterable": false
+      },
+      "playback": {
+        "relay": "always"
+      }
+    },
+    {
+      "id": "quark4k-pan-js",
+      "name": "夸克4K资源站",
+      "driver": "script_js",
+      "capabilities": [
+        "vod"
+      ],
+      "requiredPermissions": [
+        "network:public",
+        "auth:session",
+        "local_proxy",
+        "storage"
+      ],
+      "source": {
+        "url": "https://raw.githubusercontent.com/unifangg/livedeck-sources/main/scripts/quark4k_pan.js",
+        "urls": [
+          "https://cdn.jsdelivr.net/gh/unifangg/livedeck-sources@main/scripts/quark4k_pan.js"
+        ],
+        "format": "js",
+        "version": "1.0.0",
+        "apiVersion": 1
+      },
+      "auth": {
+        "mode": "cookie",
+        "methods": [
+          "cookie"
+        ],
+        "slots": [
+          "cloud:quark"
+        ]
+      },
+      "meta": {
+        "tags": [
+          "网盘",
+          "夸克",
+          "4K"
+        ],
+        "geoHint": "CN",
+        "nsfw": false,
+        "enabledByDefault": true
+      },
+      "rateLimit": {
+        "maxConcurrent": 3,
+        "minIntervalMs": 200
+      },
+      "vod": {
+        "searchable": true,
+        "quickSearch": false,
+        "filterable": false
+      },
+      "playback": {
+        "relay": "always"
+      }
+    },
+    {
+      "id": "aipan-pan-js",
+      "name": "爱盼网盘",
+      "driver": "script_js",
+      "capabilities": [
+        "vod"
+      ],
+      "requiredPermissions": [
+        "network:public",
+        "auth:session",
+        "local_proxy",
+        "storage"
+      ],
+      "source": {
+        "url": "https://raw.githubusercontent.com/unifangg/livedeck-sources/main/scripts/aipan_pan.js",
+        "urls": [
+          "https://cdn.jsdelivr.net/gh/unifangg/livedeck-sources@main/scripts/aipan_pan.js"
+        ],
+        "format": "js",
+        "version": "1.0.0",
+        "apiVersion": 1
+      },
+      "auth": {
+        "mode": "cookie",
+        "methods": [
+          "cookie"
+        ],
+        "slots": [
+          "cloud:quark"
+        ]
+      },
+      "meta": {
+        "tags": [
+          "网盘",
+          "夸克",
+          "4K",
+          "搜索"
+        ],
+        "geoHint": "CN",
+        "nsfw": false,
+        "enabledByDefault": true
+      },
+      "rateLimit": {
+        "maxConcurrent": 3,
+        "minIntervalMs": 200
+      },
+      "vod": {
+        "searchable": true,
+        "quickSearch": true,
+        "filterable": false
+      },
+      "playback": {
+        "relay": "always"
+      }
     }
   ]
 }

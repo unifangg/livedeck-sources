@@ -60,6 +60,8 @@ declare global {
     danmaku: boolean;
     resolvers: boolean;
     localProxy: boolean;
+    streamingRelay: boolean;
+    cloudSession: boolean;
   }
 
   type HostMultipartPart = {
@@ -72,7 +74,7 @@ declare global {
 
   interface HostHttpRequestOptions {
     url: string;
-    method?: "GET" | "POST" | "HEAD" | "PUT" | "PATCH" | "DELETE";
+    method?: "GET" | "POST" | "HEAD" | "PUT" | "PATCH" | "DELETE" | "PROPFIND" | "OPTIONS" | "MKCOL";
     headers?: Record<string, string>;
     body?: string;
     bodyBase64?: string;
@@ -283,6 +285,7 @@ declare global {
       zlibDecompress(input: BinaryInput): number[];
       deflateCompress(input: BinaryInput): number[];
       deflateDecompress(input: BinaryInput): number[];
+      brotliDecompress(input: BinaryInput): number[];
       decodeText(input: BinaryInput, encoding?: string): string;
       encodeText(text: string, encoding?: string): number[];
       urlEncode(str: string): string;
@@ -294,6 +297,7 @@ declare global {
       resolveUrl(base: string, rel: string): string;
       s2t(str: string): string;
       t2s(str: string): string;
+      htmlUnescape(str: string): string;
       parseDelimitedSources(playFrom: string, playUrl: string): SdkVodPlaySource[];
     };
     cache: {
@@ -307,6 +311,7 @@ declare global {
     };
     session: {
       getCookieHeader(platformId?: string): string;
+      setCookieHeader(platformId: string, cookieHeader: string): void;
       seedTransactionCookies(transactionId: string, cookies: unknown[], scope?: string): void;
     };
     time: {
